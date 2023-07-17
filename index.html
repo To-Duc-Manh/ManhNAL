@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function countVietnamese(input) {
+            const vietnamese = {
+                aw: 'ă',
+                aa: 'â',
+                dd: 'đ',
+                ee: 'ê',
+                oo: 'ô',
+                ow: 'ơ',
+                w: 'ư',
+            };
+
+            let count = 0;
+            let currentIndex = 0;
+            const inputLength = input.length;
+
+            while (currentIndex < inputLength) {
+                let checkVietnamese = false;
+                for (let i = 2; i <= 3; i++) {
+                    const substring = input.substr(currentIndex, i);
+                    if (vietnamese.hasOwnProperty(substring)) {
+                        currentIndex += i;
+                        count++;
+                        checkVietnamese = true;
+                        break;
+                    }
+                }
+                if (!checkVietnamese) {
+                    currentIndex++;
+                }
+            }
+            return count;
+        }
+        const input = 'dawhwhcoomddwefee';
+        const vietnameseCount = countVietnamese(input);
+        console.log(vietnameseCount);
+    </script>
+</body>
+
+</html>
